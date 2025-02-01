@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">MAD Lab1 Profile Card</string>
     <string name="profile_image_description">A picture of a black cat sitting in a laundry basket.</string>
+    <string name="profile_name">Bryce Stacy</string>
+    <string name="profile_bio">I am a person. A person with some form of goals and/or ambitions. I have two eyes, two arms, and two legs. At the ends of my arms are hands, from which sprout five thin sticks known as fingers. I also have a mouth with which I consume nutrients. Belief or disbelief rests with you.</string>
 </resources>
