@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MAD Lab1 Profile Card</string>
+    <string name="profile_image_description">A picture of a black cat sitting in a laundry basket.</string>
 </resources>
