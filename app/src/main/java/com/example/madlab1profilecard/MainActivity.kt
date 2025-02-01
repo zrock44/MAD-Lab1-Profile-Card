@@ -5,8 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -14,10 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.madlab1profilecard.ui.theme.MADLab1ProfileCardTheme
 
@@ -27,7 +33,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MADLab1ProfileCardTheme {
-                Surface {
+                Surface(modifier = Modifier.fillMaxSize()) {
                     ProfileCard()
                 }
             }
@@ -35,9 +41,14 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//Composable that combines the profile image and text.
 @Composable
 fun ProfileCard(modifier: Modifier = Modifier) {
-    Column {
+    Column(
+        modifier = Modifier
+            .background(color = Color.Cyan)
+            .padding(16.dp)
+    ) {
         ProfileImage()
         ProfileText()
     }
@@ -50,11 +61,17 @@ fun ProfileText(modifier: Modifier = Modifier) {
         Text(
             text = stringResource(R.string.profile_name),
             fontSize = 24.sp,
-            modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            textAlign = TextAlign.Center,
+            color = Color.Black
         )
         Text(
-            text = stringResource(R.string.profile_bio)
+            text = stringResource(R.string.profile_bio),
+            textAlign = TextAlign.Justify,
+            color = Color.Black
         )
     }
 }
@@ -74,6 +91,8 @@ fun ProfileImage(modifier: Modifier = Modifier) {
 @Composable
 fun ProfileCardPreview() {
     MADLab1ProfileCardTheme {
-        ProfileCard()
+        Surface(Modifier.fillMaxSize()) {
+            ProfileCard()
+        }
     }
 }
