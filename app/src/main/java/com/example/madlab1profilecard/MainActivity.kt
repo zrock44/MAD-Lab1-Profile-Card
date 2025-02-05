@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MADLab1ProfileCardTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
+                Surface {
                     ProfileCard()
                 }
             }
@@ -41,23 +42,30 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//Composable that combines the profile image and text.
+// Composable that combines the profile image and text.
 @Composable
 fun ProfileCard(modifier: Modifier = Modifier) {
-    Column(
+    Box(
         modifier = Modifier
+            .fillMaxSize()
             .background(color = Color.Cyan)
-            .padding(16.dp)
     ) {
-        ProfileImage()
-        ProfileText()
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.Center)
+        ) {
+            ProfileImage()
+            ProfileText()
+        }
     }
 }
 
-//All text for the profile card.
+// All text for the profile card.
 @Composable
 fun ProfileText(modifier: Modifier = Modifier) {
     Column {
+        // Top text. Contains my name.
         Text(
             text = stringResource(R.string.profile_name),
             fontSize = 24.sp,
@@ -68,30 +76,36 @@ fun ProfileText(modifier: Modifier = Modifier) {
             textAlign = TextAlign.Center,
             color = Color.Black
         )
+        // Bottom text. Contains my bio.
         Text(
             text = stringResource(R.string.profile_bio),
-            textAlign = TextAlign.Justify,
+            textAlign = TextAlign.Center,
             color = Color.Black
         )
     }
 }
 
-//Image for the user profile. In this case it's my cat Biggie.
+// Image for the user profile. In this case it's my cat Biggie.
 @Composable
 fun ProfileImage(modifier: Modifier = Modifier) {
     val profileImage = painterResource(R.drawable.profile_image)
-    Image(
-        contentDescription = stringResource(R.string.profile_image_description),
-        painter = profileImage,
-        modifier = Modifier.clip(CircleShape)
-    )
+    Box(modifier = Modifier.fillMaxWidth()) {
+        Image(
+            contentDescription = stringResource(R.string.profile_image_description),
+            painter = profileImage,
+            modifier = Modifier
+                .clip(CircleShape)
+                .align(Alignment.Center)
+        )
+    }
 }
 
+// Preview.
 @Preview(showBackground = true)
 @Composable
 fun ProfileCardPreview() {
     MADLab1ProfileCardTheme {
-        Surface(Modifier.fillMaxSize()) {
+        Surface {
             ProfileCard()
         }
     }
